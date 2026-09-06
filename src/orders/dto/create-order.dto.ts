@@ -1,15 +1,4 @@
-import { OrderStatus } from '@prisma/client';
-import {
-  ArrayMinSize,
-  IsArray,
-  IsBoolean,
-  IsEnum,
-  IsNumber,
-  IsOptional,
-  IsPositive,
-  ValidateNested,
-} from 'class-validator';
-import { OrderStatusList } from '../enum/order.enum';
+import { ArrayMinSize, IsArray, ValidateNested } from 'class-validator';
 import { OrderItemDto } from './order-item.dto';
 import { Type } from 'class-transformer';
 
@@ -18,5 +7,5 @@ export class CreateOrderDto {
   @ArrayMinSize(1)
   @ValidateNested({ each: true })
   @Type(() => OrderItemDto)
-  items: any[];
+  items: OrderItemDto[];
 }
